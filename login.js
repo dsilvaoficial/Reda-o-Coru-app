@@ -1,4 +1,5 @@
 async function login(){
+
   let email = document.getElementById("email").value
   let senha = document.getElementById("senha").value
 
@@ -17,4 +18,5 @@ async function login(){
   }else{
     alert("Login inválido")
   }
+
 }
