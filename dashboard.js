@@ -1,5 +1,7 @@
 async function corrigir(){
 
+  console.log("Botão clicado");
+
   let texto = document.getElementById("texto").value
 
   let resposta = await fetch("/api/corrigir",{
@@ -12,12 +14,15 @@ async function corrigir(){
 
   let data = await resposta.json()
 
+  console.log("Resposta recebida", data);
+
   document.getElementById("resultado").innerHTML = `
-<h3>Resultado</h3>
-<p>${data.resultado}</p>
-<p>Créditos: ${data.creditos}</p>
-`;
-  
+  <h3>Resultado</h3>
+  <p>${data.resultado}</p>
+  <p>Créditos: ${data.creditos}</p>
+  `
+}
+
 function sair(){
   window.location.href = "login.html"
 }
