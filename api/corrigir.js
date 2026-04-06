@@ -1,13 +1,11 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
-
-  try{
+  try {
     const { texto } = req.body;
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const apiKey = process.env.GEMINI_API_KEY;
-    
+
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash-lite"
     });
@@ -28,10 +26,9 @@ ${texto}
       creditos: 10
     });
 
-  } catch(e){
+  } catch (e) {
     res.status(500).json({
-      erro:"Erro ao corrigir"
+      erro: "Erro ao corrigir"
     });
   }
-
 }
