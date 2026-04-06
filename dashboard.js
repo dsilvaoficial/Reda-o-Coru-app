@@ -12,14 +12,12 @@ async function corrigir(){
 
   let data = await resposta.json()
 
-  document.getElementById("resultado").innerHTML =
-  `
-  <h3>Resultado</h3>
-  <p>${data.resultado}</p>
-  <p>Créditos: ${data.creditos}</p>
-  `
-}
-
+  document.getElementById("resultado").innerHTML = `
+<h3>Resultado</h3>
+<p>${data.resultado}</p>
+<p>Créditos: ${data.creditos}</p>
+`;
+  
 function sair(){
   window.location.href = "login.html"
 }
