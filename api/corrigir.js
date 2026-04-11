@@ -4,7 +4,9 @@ export default async function handler(req, res) {
   try {
     const { texto } = req.body;
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  export default async function handler(req, res) {
+  console.log("API KEY:", process.env.GEMINI_API_KEY);
+  try {
 
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash-lite"
