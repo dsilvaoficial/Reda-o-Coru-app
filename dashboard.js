@@ -12,6 +12,9 @@ async function corrigir(){
     body: JSON.stringify({texto})
   })
 
+  let creditos = localStorage.getItem("creditos") || 0;
+
+document.getElementById("creditos").innerText = creditos;
   let data = await resposta.json()
 
   console.log("Resposta recebida", data);
