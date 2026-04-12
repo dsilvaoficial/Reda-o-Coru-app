@@ -18,5 +18,6 @@ async function login(){
   }else{
     alert("Login inválido")
   }
-
+  
+  localStorage.setItem("creditos", 10);
 }
