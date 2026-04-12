@@ -1,35 +1,47 @@
-async function corrigir(){
+async function corrigir() {
 
-  console.log("Botão clicado");
+    let creditos = parseInt(localStorage.getItem("creditos")) || 0;
 
-  let texto = document.getElementById("texto").value
+    if (creditos <= 0) {
+        alert("Você não tem mais créditos!");
+        return;
+    }
 
-  let resposta = await fetch("/api/corrigir",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
-    },
-    body: JSON.stringify({texto})
-  })
+    console.log("Botão clicado");
 
-  let creditos = localStorage.getItem("creditos") || 0;
+    let texto = document.getElementById("texto").value;
 
-  if (creditos <= 0) { alert("Você não tem mais créditos!");
-    return;
- }
-  
-document.getElementById("resultado").innerText = creditos;
-  let data = await resposta.json()
+    document.getElementById("resultado").innerHTML = "Corrigindo...";
 
-  console.log("Resposta recebida", data);
+    try {
+        let resposta = await fetch("/api/corrigir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ texto })
+        });
 
-  document.getElementById("resultado").innerHTML = `
-  <h3>Resultado</h3>
-  <p>${data.resultado}</p>
-  <p>Créditos: ${data.creditos}</p>
-  `
-}
+        let data = await resposta.json();
 
-function sair(){
-  window.location.href = "login.html"
-}
+        // DIMINUI CRÉDITO
+        creditos--;
+        localStorage.setItem("creditos", creditos);
+
+        document.getElementById("creditos").innerText = creditos;
+
+        console.log("Resposta recebida", data);
+
+        document.getElementById("resultado").innerHTML = `
+            <h3>Resultado</h3>
+            <p>${data.resultado}</p>
+        `;
+
+    } catch (erro) {
+        console.error("Erro:", erro);
+
+        document.getElementById("resultado").innerHTML = `
+            <p style="color:red;">Erro ao corrigir. Tente novamente.</p>
+        `;
+    }
+                             }
