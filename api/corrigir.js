@@ -4,9 +4,8 @@ export default async function handler(req, res) {
   try {
     const { texto } = req.body;
 
-  export default async function handler(req, res) {
-  console.log("API KEY:", process.env.GEMINI_API_KEY);
-  try {
+    // 🔑 Conectar com API
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash-lite"
@@ -14,7 +13,7 @@ export default async function handler(req, res) {
 
     const prompt = `
 Você é um corretor de redações do ENEM.
-Corrija o texto e dê sugestões.
+Corrija o texto e dê sugestões de melhoria.
 
 Texto:
 ${texto}
@@ -29,8 +28,10 @@ ${texto}
     });
 
   } catch (e) {
+    console.error("ERRO REAL:", e); // 👈 MUITO IMPORTANTE
+
     res.status(500).json({
-      erro: "Erro ao corrigir"
+      erro: "Erro ao corrigir redação"
     });
   }
 }
