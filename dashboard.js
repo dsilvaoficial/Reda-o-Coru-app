@@ -14,7 +14,11 @@ async function corrigir(){
 
   let creditos = localStorage.getItem("creditos") || 0;
 
-document.getElementById("creditos").innerText = creditos;
+  if (creditos <= 0) { alert("Você não tem mais créditos!");
+    return;
+ }
+  
+document.getElementById("resultado").innerText = creditos;
   let data = await resposta.json()
 
   console.log("Resposta recebida", data);
