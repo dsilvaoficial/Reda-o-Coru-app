@@ -14,12 +14,14 @@ async function corrigir() {
     document.getElementById("resultado").innerHTML = "Corrigindo...";
 
     try {
+        let email = localStorage.getItem("email");
+        
         let resposta = await fetch("/api/corrigir", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ texto })
+            body: JSON.stringify({ texto, email })
         });
 
         let data = await resposta.json();
@@ -45,3 +47,5 @@ async function corrigir() {
         `;
     }
                              }
+
+        
