@@ -21,3 +21,5 @@ async function login(){
   
   localStorage.setItem("creditos", 10);
 }
+
+localStorage.setItem("email", email);
