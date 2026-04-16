@@ -33,6 +33,8 @@ async function corrigir() {
         document.getElementById("creditos").innerText = creditos;
 
         console.log("Resposta recebida", data);
+        
+        document.getElementById("creditos").innerText = data.creditos;
 
         document.getElementById("resultado").innerHTML = `
             <h3>Resultado</h3>
