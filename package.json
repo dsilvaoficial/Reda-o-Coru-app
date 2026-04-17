@@ -5,3 +5,8 @@
     "@google/generative-ai": "^0.21.0"
   }
 }
+
+"dependencies": {
+  "@google/generative-ai": "^0.0.0",
+  "jsonwebtoken": "^9.0.0"
+}
