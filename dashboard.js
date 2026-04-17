@@ -50,4 +50,5 @@ async function carregarCreditos() {
     document.getElementById("creditos").innerText = data.creditos;
 }
 
+window.onload = carregarCreditos;
         
