@@ -1,12 +1,5 @@
 async function corrigir() {
 
-    let creditos = parseInt(localStorage.getItem("creditos")) || 0;
-
-    if (creditos <= 0) {
-        alert("Você não tem mais créditos!");
-        return;
-    }
-
     console.log("Botão clicado");
 
     let texto = document.getElementById("texto").value;
@@ -27,9 +20,7 @@ async function corrigir() {
         let data = await resposta.json();
 
         // DIMINUI CRÉDITO
-        creditos--;
-        localStorage.setItem("creditos", creditos);
-
+        
         document.getElementById("creditos").innerText = creditos;
 
         console.log("Resposta recebida", data);
@@ -49,5 +40,14 @@ async function corrigir() {
         `;
     }
                              }
+
+async function carregarCreditos() {
+    const email = localStorage.getItem("email");
+
+    let resposta = await fetch(`/api/creditos?email=${email}`);
+    let data = await resposta.json();
+
+    document.getElementById("creditos").innerText = data.creditos;
+}
 
         
