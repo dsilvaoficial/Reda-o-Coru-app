@@ -7,15 +7,16 @@ async function corrigir() {
     document.getElementById("resultado").innerHTML = "Corrigindo...";
 
     try {
-        let email = localStorage.getItem("email");
-        
-        let resposta = await fetch("/api/corrigir", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ texto, email })
-        });
+        let token = localStorage.getItem("token");
+
+   let resposta = await fetch("/api/corrigir", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // 🔥 AQUI
+    },
+    body: JSON.stringify({ texto })
+});
 
         if (!resposta.ok) {
        let erro = await resposta.json();
