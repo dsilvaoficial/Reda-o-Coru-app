@@ -45,9 +45,14 @@ async function corrigir() {
                              }
 
 async function carregarCreditos() {
-    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("token");
 
-    let resposta = await fetch(`/api/creditos?email=${email}`);
+    let resposta = await fetch("/api/creditos", {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
     let data = await resposta.json();
 
     document.getElementById("creditos").innerText = data.creditos;
