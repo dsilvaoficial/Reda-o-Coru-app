@@ -23,3 +23,5 @@ async function login(){
 }
 
 localStorage.setItem("email", email);
+
+localStorage.setItem("token", data.token);
