@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const SECRET = "segredo_super_secreto"; // depois vamos melhorar isso
+const SECRET = process.env.JWT_SECRET;
 
 let usuarios = {
     "teste@teste.com": {
