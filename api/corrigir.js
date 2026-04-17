@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import jwt from "jsonwebtoken";
 
-const SECRET = "segredo_super_secreto";
+const SECRET = process.env.JWT_SECRET;
 
 let usuarios = {
     "teste@teste.com": {
