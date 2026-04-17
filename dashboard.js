@@ -17,12 +17,14 @@ async function corrigir() {
             body: JSON.stringify({ texto, email })
         });
 
+        if (!resposta.ok) {
+       let erro = await resposta.json();
+        alert(erro.erro);
+        return;
+        }
         let data = await resposta.json();
 
-        // DIMINUI CRÉDITO
-        
-        document.getElementById("creditos").innerText = creditos;
-
+        // Back-end 
         console.log("Resposta recebida", data);
         
         document.getElementById("creditos").innerText = data.creditos;
